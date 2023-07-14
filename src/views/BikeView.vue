@@ -6,7 +6,8 @@
 
     <div class="container-fluid">
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery"
+          @input="saveSearchQuery">
       </form>
     </div>
 
@@ -22,17 +23,7 @@
       <!-- <p>위도: {{ station.stationLatitude }}</p>
       <p>경도: {{ station.stationLongitude }}</p> -->
     </div>
-
-    <div class="d-flex justify-content-center my-3">
-      <button class="btn" @click="previousPage" :disabled="currentPage === 1">
-        이전
-      </button>
-      <button class="btn" @click="nextPage" :disabled="currentPage === totalPages">
-        다음
-      </button>
-    </div>
   </div>
-  
 </template>
 
 <script>
@@ -47,11 +38,10 @@ export default {
     return {
       bikeStations: [],
       searchQuery: "",
-      currentPage: 1,     // 현재 페이지 번호
-      pageSize: 5,       // 한 페이지에 표시되는 스테이션 개수
     };
   },
   created() {
+    this.searchQuery = localStorage.getItem("searchQuery") || "";
     axios
       .get(`http://openapi.seoul.go.kr:8088/${apiKey}/json/bikeList/1/1000/`)
       .then((response) => {
@@ -63,10 +53,8 @@ export default {
   },
   computed: {
     filteredStations() {
-      const startIndex = (this.currentPage - 1) * this.pageSize;
-      const endIndex = startIndex + this.pageSize;
-      return this.bikeStations.slice(startIndex, endIndex).filter((station) => {
-        const searchRegex = new RegExp(this.searchQuery, "i");
+      const searchRegex = new RegExp(this.searchQuery, "i");
+      return this.bikeStations.filter((station) => {
         return (
           searchRegex.test(station.stationName) ||
           searchRegex.test(station.stationLatitude) ||
@@ -74,29 +62,21 @@ export default {
         );
       });
     },
-    totalPages() {
-      return Math.ceil(this.bikeStations.length / this.pageSize);
-    },
   },
   methods: {
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
-      }
-    },
     showCoordinates(station) {
       console.log("선택된 스테이션의 위도:", station.stationLatitude);
       console.log("선택된 스테이션의 경도:", station.stationLongitude);
 
       localStorage.setItem("selectedLatitude", station.stationLatitude);
       localStorage.setItem("selectedLongitude", station.stationLongitude);
+
+      location.reload();
     },
-    previousPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
+    saveSearchQuery() {
+      localStorage.setItem("searchQuery", this.searchQuery);
     },
   },
-  components: { MapComp, GeoLocation }
+  components: { MapComp, GeoLocation },
 };
 </script>
