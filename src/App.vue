@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">GreenGo</router-link>
+    <router-link to="/">Green Go</router-link>
     <router-link to="/bike">자전거</router-link>
     <router-link to="/kick">킥보드</router-link>
     <!-- <router-link to="/test">Test</router-link> -->
