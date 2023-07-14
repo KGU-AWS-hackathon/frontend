@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <img alt="Map" src="../assets/map.jpg" class="map-image">
-    </div>
+    <MapKakao :latitude="37.39843974939604" :longitude="127.10972941510465" />
 </template>
 
-<style>
-.map-image {
-    width: 400px;
-    height: auto;
+<script>
+import MapKakao from '@/components/Mapkakao.vue';
+export default {
+    components: {
+        MapKakao
+    }
 }
-</style>
+</script>
