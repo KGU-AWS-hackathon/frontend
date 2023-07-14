@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>자전거</h1>
+    <!-- <h1>자전거</h1> -->
+    <div>
+      <MapComp/>
+    </div>
+    
     <div class="container-fluid">
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery">
@@ -18,38 +22,38 @@
 </template>
 
 <script>
+import MapComp from '@/components/MapComp.vue';
 import axios from 'axios';
 
 const apiKey = process.env.VUE_APP_API_KEY;
 
 export default {
-  data() {
-    return {
-      bikeStations: [],
-      searchQuery: '',
-    };
-  },
-  created() {
-    axios
-      .get(`http://openapi.seoul.go.kr:8088/${apiKey}/json/bikeList/1/1000/`)
-      .then((response) => {
-        this.bikeStations = response.data?.rentBikeStatus?.row;
-      })
-      .catch((error) => {
-        console.error('Error retrieving bike rental data:', error);
-      });
-  },
-  computed: {
-    filteredStations() {
-      return this.bikeStations.filter((station) => {
-        const searchRegex = new RegExp(this.searchQuery, 'i');
-        return (
-          searchRegex.test(station.stationName) ||
-          searchRegex.test(station.stationLatitude) ||
-          searchRegex.test(station.stationLongitude)
-        );
-      });
+    data() {
+        return {
+            bikeStations: [],
+            searchQuery: "",
+        };
     },
-  },
+    created() {
+        axios
+            .get(`http://openapi.seoul.go.kr:8088/${apiKey}/json/bikeList/1/1000/`)
+            .then((response) => {
+            this.bikeStations = response.data?.rentBikeStatus?.row;
+        })
+            .catch((error) => {
+            console.error("Error retrieving bike rental data:", error);
+        });
+    },
+    computed: {
+        filteredStations() {
+            return this.bikeStations.filter((station) => {
+                const searchRegex = new RegExp(this.searchQuery, "i");
+                return (searchRegex.test(station.stationName) ||
+                    searchRegex.test(station.stationLatitude) ||
+                    searchRegex.test(station.stationLongitude));
+            });
+        },
+    },
+    components: { MapComp }
 };
 </script>
