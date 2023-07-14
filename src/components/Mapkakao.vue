@@ -4,6 +4,8 @@
 </template>
 
 <script>
+const apiKey = process.env.VUE_APP_KAKAO_MAPS_API_KEY;
+
 export default {
     name: "MapKakao",
     props: {
@@ -32,7 +34,7 @@ export default {
         loadScript() {
             const script = document.createElement("script");
             // 해당 앱키의 값은 추후 변경해야할것(현재 테스트용으로 개인키 입력)
-            script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=37b14e379a42ef280dabbbca1a023d8d&autoload=false"
+            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
             script.onload = () => window.kakao.maps.load(this.loadMap);
 
             document.head.appendChild(script);
