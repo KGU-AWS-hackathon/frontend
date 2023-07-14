@@ -1,8 +1,14 @@
 <template>
     <div>
         <!-- 데이터를 표시할 요소 -->
-        <p>{{ fetchedData }}</p>
+        <p>{{ fetchedData.isSuccess }}</p>
+        <p>{{ fetchedData.code }}</p>
+        <p>{{ fetchedData.message }}</p>
     </div>
+<!-- 
+    <button class="btn btn-primary btn-space" @click="frmLoginPopup.show(true)">
+        Log In
+    </button> -->
 </template>
 
 <script>
@@ -11,7 +17,8 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            fetchedData: null
+            fetchedData: null,
+            // frmLoginPopup: {},
         };
     },
     created() {
@@ -21,7 +28,7 @@ export default {
         getData() {
             axios.get('http://phopho.shop/')
                 .then(response => {
-                    this.fetchedData = response.data.message;
+                    this.fetchedData = response.data;
                 })
                 .catch(error => {
                     console.error(error);
