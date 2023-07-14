@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="getLocation">현재 위치 가져오기</button>
+    <div class="my-3">
+        <h5>현재 위치</h5>
         <p v-if="locationError">{{ locationError }}</p>
         <p v-if="location">{{ location }}</p>
     </div>
@@ -13,6 +13,9 @@ export default {
             location: null,
             locationError: null
         };
+    },
+    mounted() {
+        this.getLocation();
     },
     methods: {
         getLocation() {
