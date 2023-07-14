@@ -16,7 +16,7 @@
     </div> -->
 
     <div class="mt-5" v-for="station in filteredStations" :key="station.stationId" @click="showCoordinates(station)">
-      <h3>{{ station.stationName }}</h3>
+      <h5>{{ station.stationName }}</h5>
       <p class="mt-3">거치대 개수: {{ station.rackTotCnt }} 개</p>
       <p>대여 가능 수: {{ station.parkingBikeTotCnt }} 대</p>
       <p>자전거 거치율: {{ station.shared }}%</p>
