@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <!-- <h1>자전거</h1> -->
+  <div class="mx-3">
     <div>
-      <MapComp/>
+      <MapComp />
     </div>
     
     <div class="container-fluid">
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery">
       </form>
+    </div>
+
+    <div>
+      <geo-location/>
     </div>
 
     <div class="mt-5" v-for="station in filteredStations" :key="station.stationId">
@@ -25,6 +28,7 @@
 <script>
 import MapComp from '@/components/MapComp.vue';
 import axios from 'axios';
+import GeoLocation from './GeoLocation.vue';
 
 const apiKey = process.env.VUE_APP_API_KEY;
 
@@ -55,6 +59,6 @@ export default {
             });
         },
     },
-    components: { MapComp }
+    components: { MapComp, GeoLocation }
 };
 </script>

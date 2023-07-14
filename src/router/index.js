@@ -15,7 +15,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/BikeView.vue')
+    component: () => import('../views/BikeView.vue')
   },
   {
     path: '/kick',
@@ -23,7 +23,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/KickboardView.vue')
+    component: () => import('../views/KickboardView.vue')
+  },
+  {
+    path: '/geo',
+    name: 'geo',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/GeoLocation.vue')
   },
   {
     path: '/test',

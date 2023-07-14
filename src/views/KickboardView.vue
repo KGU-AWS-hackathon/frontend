@@ -1,15 +1,15 @@
 <template>
   <div>
-    <!-- <h1>킥보드</h1> -->
+    <div class="mx-3">
+      <MapComp />
+    </div>
 
     <div class="container-fluid">
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery">
       </form>
     </div>
-    <div>
-      <MapComp />
-    </div>
+
     <div class="mt-5" v-for="item in filteredData" :key="item.NO">
       <p>{{ item.SGG_NM }} {{ item.ADDR }}</p>
       <p>{{ item.DADDR }}</p>
