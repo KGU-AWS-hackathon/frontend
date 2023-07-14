@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/bike">자전거</router-link> |
+    <router-link to="/kick">킥보드</router-link> |
     <router-link to="/test">Test</router-link>
   </nav>
   <router-view/>
