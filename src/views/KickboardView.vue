@@ -42,7 +42,7 @@ export default {
   methods: {
     fetchData() {
       axios
-        .get('http://phopho.shop/kickboard')
+        .get('https://phopho.shop/kickboard')
         .then(response => {
           this.items = response.data;
         })
