@@ -32,6 +32,7 @@ export default {
         if (storedLatitude && storedLongitude) {
             this.latitudeInput = storedLatitude;
             this.longitudeInput = storedLongitude;
+            this.updateCoordinates();
         }
     },
     methods: {
