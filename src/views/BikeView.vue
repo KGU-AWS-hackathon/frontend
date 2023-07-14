@@ -1,17 +1,19 @@
 <template>
   <div>
-    <h1>Bike Rental Stations</h1>
-    <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" />
-    <ul>
-      <tr v-for="station in filteredStations" :key="station.stationId">
-        <h3>{{ station.stationName }}</h3>
-        <p>거치대 개수: {{ station.rackTotCnt }}</p>
-        <p>대여 가능 수: {{ station.parkingBikeTotCnt }} 대</p>
-        <p>자전거 거치율: {{ station.shared }}%</p>
-        <p>위도: {{ station.stationLatitude }}</p>
-        <p>경도: {{ station.stationLongitude }}</p>
-      </tr>
-    </ul>
+    <h1>자전거</h1>
+    <div class="container-fluid">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery">
+      </form>
+    </div>
+    <div class="mt-5" v-for="station in filteredStations" :key="station.stationId">
+      <h3>{{ station.stationName }}</h3>
+      <p class="mt-3">거치대 개수: {{ station.rackTotCnt }}</p>
+      <p>대여 가능 수: {{ station.parkingBikeTotCnt }} 대</p>
+      <p>자전거 거치율: {{ station.shared }}%</p>
+      <p>위도: {{ station.stationLatitude }}</p>
+      <p>경도: {{ station.stationLongitude }}</p>
+    </div>
   </div>
 </template>
 
