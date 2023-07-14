@@ -1,8 +1,10 @@
 <template>
     <div class="container">
-        <input class="input-field" v-model="latitudeInput" placeholder="Latitude" />
-        <input class="input-field" v-model="longitudeInput" placeholder="Longitude" />
-        <button class="update-button" v-on:click="updateCoordinates">Update</button>
+        <div class="input-row">
+            <input class="input-field" v-model="latitudeInput" placeholder="위도" />
+            <input class="input-field" v-model="longitudeInput" placeholder="경도" />
+        </div>
+        <button class="update-button" v-on:click="updateCoordinates">검색</button>
         <MapKakao :latitude="latitude" :longitude="longitude" :key="mapKey" />
     </div>
 </template>
@@ -12,7 +14,7 @@ import MapKakao from '@/components/Mapkakao.vue';
 
 export default {
     components: {
-        MapKakao
+        MapKakao,
     },
     data() {
         return {
@@ -20,7 +22,7 @@ export default {
             longitudeInput: '',
             latitude: 37.55564880, // Default value
             longitude: 126.91062927, // Default value
-            mapKey: 0 // Key for forcing map reload
+            mapKey: 0, // Key for forcing map reload
         };
     },
     methods: {
@@ -33,7 +35,11 @@ export default {
         },
         reloadMap() {
             this.mapKey += 1; // Increment key to force map reload
-        }
+        },
+        showCoordinates(station) {
+            this.latitudeInput = station.stationLatitude;
+            this.longitudeInput = station.stationLongitude;
+        },
     },
     watch: {
         latitude() {
@@ -41,9 +47,9 @@ export default {
         },
         longitude() {
             this.reloadMap();
-        }
-    }
-}
+        },
+    },
+};
 </script>
 
 <style scoped>
@@ -53,8 +59,13 @@ export default {
     align-items: center;
 }
 
+.input-row {
+    display: flex;
+}
+
 .input-field {
     margin-bottom: 10px;
+    margin-inline: 5px;
     padding: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -70,5 +81,7 @@ export default {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+     width: 100%; /* 추가된 스타일 */
+    box-sizing: border-box; /* 추가된 스타일 */
 }
 </style>

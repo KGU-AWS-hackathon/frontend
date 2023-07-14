@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mx-3">
+  <div class="mx-3">
+    <div>
       <MapComp />
     </div>
 
