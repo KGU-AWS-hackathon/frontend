@@ -70,6 +70,7 @@ export default {
 
 .input-row {
     display: flex;
+    margin-block: 10px;
 }
 
 .input-field {
