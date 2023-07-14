@@ -85,7 +85,7 @@ export default {
 .update-button {
     padding: 10px 20px;
     margin-bottom: 20px;
-    background-color: #4CAF50;
+    background-color: #91c450;
     color: white;
     border: none;
     border-radius: 4px;

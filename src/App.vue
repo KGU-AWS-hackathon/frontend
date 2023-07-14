@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/bike">자전거</router-link> |
+    <router-link to="/">GreenGo</router-link>
+    <router-link to="/bike">자전거</router-link>
     <router-link to="/kick">킥보드</router-link>
     <!-- <router-link to="/test">Test</router-link> -->
   </nav>
@@ -30,8 +30,8 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
-  background-color: #e6f4ea;
+  color: #91c450;
+  /* background-color: #e6f4ea; */
 }
 
 </style>
