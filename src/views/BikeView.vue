@@ -11,9 +11,9 @@
       </form>
     </div>
 
-    <div>
+    <!-- <div>
       <geo-location />
-    </div>
+    </div> -->
 
     <div class="mt-5" v-for="station in filteredStations" :key="station.stationId" @click="showCoordinates(station)">
       <h3>{{ station.stationName }}</h3>
@@ -29,7 +29,7 @@
 <script>
 import MapComp from '@/components/MapComp.vue';
 import axios from 'axios';
-import GeoLocation from './GeoLocation.vue';
+// import GeoLocation from './GeoLocation.vue';
 
 const apiKey = process.env.VUE_APP_API_KEY;
 
@@ -77,6 +77,6 @@ export default {
       localStorage.setItem("searchQuery", this.searchQuery);
     },
   },
-  components: { MapComp, GeoLocation },
+  components: { MapComp },
 };
 </script>
