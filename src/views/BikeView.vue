@@ -15,7 +15,7 @@
       <geo-location />
     </div> -->
 
-    <div class="mt-5" v-for="station in filteredStations" :key="station.stationId" @click="showCoordinates(station)">
+    <div class="mt" v-for="station in filteredStations" :key="station.stationId" @click="showCoordinates(station)">
       <h5>{{ station.stationName }}</h5>
       <p class="mt-3">거치대 개수: {{ station.rackTotCnt }} 개</p>
       <p>대여 가능 수: {{ station.parkingBikeTotCnt }} 대</p>
@@ -86,20 +86,22 @@ export default {
   margin-bottom: 10px;
 
 }
-.mt-5{
-  width: 90%;
+.mt{
+  /* width: 90%; */
   border: solid 1px #91c450;
   border-radius: 30px 30px ;
-  margin: 0 10px;
+  padding-block-start: 10px;
+  margin: 20px 10px;
   align-items: center;
 }
 @media screen and (min-width:450px){
-  .mt-5{
-  width: 45%;
+  .mt{
+  /* width: 45%; */
   float: left;
   border: solid 1px #91c450;
   border-radius: 30px 30px ;
-  margin: 0 10px;
+  margin-block: 30px;
+  padding-top: 10px;
 }
 }
 </style>
