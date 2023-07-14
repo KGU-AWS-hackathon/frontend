@@ -1,14 +1,13 @@
 <template>
     <div>
-        <!-- 데이터를 표시할 요소 -->
-        <p>{{ fetchedData.isSuccess }}</p>
-        <p>{{ fetchedData.code }}</p>
-        <p>{{ fetchedData.message }}</p>
+        <div v-for="item in items" :key="item.id">
+            ID: {{ item.id }}<br>
+            위도: {{ item.ylocation }}<br>
+            경도: {{ item.xlocation }}<br>
+            Holder: {{ item.holder }}<br>
+            거치대 수: {{ item.holdersize }}
+        </div>
     </div>
-<!-- 
-    <button class="btn btn-primary btn-space" @click="frmLoginPopup.show(true)">
-        Log In
-    </button> -->
 </template>
 
 <script>
@@ -17,23 +16,23 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            fetchedData: null,
-            // frmLoginPopup: {},
+            items: [],
         };
     },
-    created() {
-        this.getData();
+    mounted() {
+        this.fetchData();
     },
     methods: {
-        getData() {
-            axios.get('http://phopho.shop/')
+        fetchData() {
+            axios
+                .get('http://phopho.shop/kickboard')
                 .then(response => {
-                    this.fetchedData = response.data;
+                    this.items = response.data;
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.log(error);
                 });
-        }
-    }
+        },
+    },
 };
 </script>

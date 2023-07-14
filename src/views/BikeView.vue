@@ -19,8 +19,8 @@
       <p class="mt-3">거치대 개수: {{ station.rackTotCnt }} 개</p>
       <p>대여 가능 수: {{ station.parkingBikeTotCnt }} 대</p>
       <p>자전거 거치율: {{ station.shared }}%</p>
-      <p>위도: {{ station.stationLatitude }}</p>
-      <p>경도: {{ station.stationLongitude }}</p>
+      <!-- <p>위도: {{ station.stationLatitude }}</p>
+      <p>경도: {{ station.stationLongitude }}</p> -->
     </div>
 
     <div class="d-flex justify-content-center my-3">
@@ -87,6 +87,9 @@ export default {
     showCoordinates(station) {
       console.log("선택된 스테이션의 위도:", station.stationLatitude);
       console.log("선택된 스테이션의 경도:", station.stationLongitude);
+
+      localStorage.setItem("selectedLatitude", station.stationLatitude);
+      localStorage.setItem("selectedLongitude", station.stationLongitude);
     },
     previousPage() {
       if (this.currentPage > 1) {

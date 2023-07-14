@@ -15,9 +15,9 @@
     </div>
 
     <div class="mt-5" v-for="item in filteredData" :key="item.id" @click="showCoordinates(item)">
-      킥보드 주차장 ID: {{ item.id }}<br>
-      위도: {{ item.ylocation }}<br>
-      경도: {{ item.xlocation }}<br>
+      {{ item.id }} . {{ item.detail }}<br>
+      <!-- 위도: {{ item.ylocation }}<br>
+      경도: {{ item.xlocation }}<br> -->
       거치가능: {{ item.holder }}<br>
       거치대 수: {{ item.holdersize }}
     </div>

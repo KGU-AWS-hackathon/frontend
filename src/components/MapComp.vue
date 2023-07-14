@@ -25,6 +25,15 @@ export default {
             mapKey: 0, // Key for forcing map reload
         };
     },
+    created() {
+        const storedLatitude = localStorage.getItem("selectedLatitude");
+        const storedLongitude = localStorage.getItem("selectedLongitude");
+
+        if (storedLatitude && storedLongitude) {
+            this.latitudeInput = storedLatitude;
+            this.longitudeInput = storedLongitude;
+        }
+    },
     methods: {
         updateCoordinates() {
             this.latitude = parseFloat(this.latitudeInput);
