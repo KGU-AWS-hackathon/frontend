@@ -1,9 +1,9 @@
 <template>
   <div class="mx-3">
-    <div>
+    <div class="map">
       <MapComp />
     </div>
-
+    
     <div class="container-fluid">
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchQuery"
@@ -80,3 +80,26 @@ export default {
   components: { MapComp },
 };
 </script>
+
+<style>
+.map{
+  margin-bottom: 10px;
+
+}
+.mt-5{
+  width: 90%;
+  border: solid 1px #91c450;
+  border-radius: 30px 30px ;
+  margin: 0 10px;
+  align-items: center;
+}
+@media screen and (min-width:450px){
+  .mt-5{
+  width: 45%;
+  float: left;
+  border: solid 1px #91c450;
+  border-radius: 30px 30px ;
+  margin: 0 10px;
+}
+}
+</style>
