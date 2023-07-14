@@ -2,6 +2,7 @@
   <div class="mx-3">
     <div class="map">
       <MapComp />
+      
     </div>
 
     <div class="container-fluid">
@@ -16,7 +17,7 @@
 
     <div class="mt" v-for="item in filteredData" :key="item.id" @click="showCoordinates(item)">
       <h5>{{ item.id }}. {{ item.detail }}</h5>
-      <p class="mt-3">거치가능: {{ item.holder }}</p>
+      <p class="mt-3">거치가능:{{ item.holder }}</p>
       <p>거치대 수: {{ item.holdersize }}</p>
       
     </div>
