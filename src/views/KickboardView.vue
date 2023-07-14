@@ -10,9 +10,9 @@
       </form>
     </div>
 
-    <div>
+    <!-- <div>
       <GeoLocation />
-    </div>
+    </div> -->
 
     <div class="mt-5" v-for="item in filteredData" :key="item.id" @click="showCoordinates(item)">
       {{ item.id }} . {{ item.detail }}<br>
@@ -27,7 +27,7 @@
 <script>
 import MapComp from '@/components/MapComp.vue';
 import axios from 'axios';
-import GeoLocation from './GeoLocation.vue';
+// import GeoLocation from './GeoLocation.vue';
 
 export default {
   data() {
@@ -73,6 +73,6 @@ export default {
       });
     },
   },
-  components: { MapComp, GeoLocation }
+  components: { MapComp }
 };
 </script>
