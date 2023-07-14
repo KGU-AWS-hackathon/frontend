@@ -53,6 +53,11 @@ export default {
     showCoordinates(item) {
       console.log("선택된 스테이션의 위도:", item.ylocation);
       console.log("선택된 스테이션의 경도:", item.xlocation);
+
+      localStorage.setItem("selectedLatitude", item.ylocation);
+      localStorage.setItem("selectedLongitude", item.xlocation);
+
+      location.reload();
     },
   },
   computed: {
