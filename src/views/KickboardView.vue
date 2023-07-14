@@ -10,10 +10,16 @@
       </form>
     </div>
 
-    <div class="mt-5" v-for="item in filteredData" :key="item.NO">
-      <p>{{ item.SGG_NM }} {{ item.ADDR }}</p>
-      <p>{{ item.DADDR }}</p>
-      <p>거치대 개수: {{ item.STAND_SIZE }}</p>
+    <div>
+      <GeoLocation />
+    </div>
+
+    <div class="mt-5" v-for="item in filteredData" :key="item.id" @click="showCoordinates(item)">
+      킥보드 주차장 ID: {{ item.id }}<br>
+      위도: {{ item.ylocation }}<br>
+      경도: {{ item.xlocation }}<br>
+      거치가능: {{ item.holder }}<br>
+      거치대 수: {{ item.holdersize }}
     </div>
   </div>
 </template>
@@ -21,13 +27,12 @@
 <script>
 import MapComp from '@/components/MapComp.vue';
 import axios from 'axios';
-
-const apiKey = process.env.VUE_APP_API_KEY;
+import GeoLocation from './GeoLocation.vue';
 
 export default {
   data() {
     return {
-      data: [],
+      items: [], // 데이터를 저장할 배열명을 'items'로 변경
       searchQuery: '',
     };
   },
@@ -37,32 +42,37 @@ export default {
   methods: {
     fetchData() {
       axios
-        .get(`http://openapi.seoul.go.kr:8088/${apiKey}/json/parkingKickboard/1/20/`)
+        .get('http://phopho.shop/kickboard')
         .then(response => {
-          this.data = response.data.parkingKickboard.row;
+          this.items = response.data;
         })
         .catch(error => {
-          console.error(error);
+          console.log(error);
         });
+    },
+    showCoordinates(item) {
+      console.log("선택된 스테이션의 위도:", item.ylocation);
+      console.log("선택된 스테이션의 경도:", item.xlocation);
     },
   },
   computed: {
     filteredData() {
       if (!this.searchQuery) {
-        return this.data;
+        return this.items; // 'data'를 'items'로 변경
       }
 
       const searchRegex = new RegExp(this.searchQuery, 'i');
 
-      return this.data.filter(item => {
+      return this.items.filter(item => {
         return (
-          searchRegex.test(item.SGG_NM) ||
-          searchRegex.test(item.ADDR) ||
-          searchRegex.test(item.DADDR)
+          searchRegex.test(item.ylocation) || // 'SGG_NM', 'ADDR', 'DADDR'를 'ylocation', 'xlocation', 'holder', 'holdersize'로 변경
+          searchRegex.test(item.xlocation) ||
+          searchRegex.test(item.holder) ||
+          searchRegex.test(item.holdersize)
         );
       });
     },
   },
-  components: { MapComp }
+  components: { MapComp, GeoLocation }
 };
 </script>
