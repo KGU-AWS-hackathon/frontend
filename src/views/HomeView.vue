@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <!-- <h1>홈화면입니다</h1> -->
+    <img class="image" alt="bn" src="@/assets/배너.jpg">
     <router-link to="/bike">
       <img class="image" alt="bike" src="@/assets/bike.jpg">
     </router-link>

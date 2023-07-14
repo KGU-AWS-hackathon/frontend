@@ -18,7 +18,7 @@
 }
 nav {
   padding: 20px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   background-color: #f2f2f2;
 }
 
